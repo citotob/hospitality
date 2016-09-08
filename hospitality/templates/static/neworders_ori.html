@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content_title %}<h2>New Orders</h2>{% endblock %}
+
+{% block content %}
+<ul>
+  {% for order in orders %}
+  <li>
+      {{order}}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

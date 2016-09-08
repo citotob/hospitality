@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content_title %}<h2>New Orders</h2>{% endblock %}
+
+{% block content %}
+<ul>
+  <li>
+      {{orders.partner}} : {{orders.price}}
+  </li>
+</ul>
+{% endblock %}

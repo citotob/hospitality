@@ -1,0 +1,55 @@
+{% load i18n static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>{% block title %}Hospitality - Orders{% endblock %}</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Accounts for your Django application" />
+    <meta name="keywords" content="accounts, django, open source" />
+    <meta name="author" content="PT. Netciti Persada" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/master.css" %}" />
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="top">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+    </div>
+    <div id="container">
+      <div id="header">
+
+
+        {% block nav %}
+        <ul id="nav">
+          {% if user.is_authenticated %}
+	  <li><a href="{% url 'neworders' %}"><span>{% trans 'New' %}</span></a></li>
+	  <li><a href="#"><span>{% trans 'Accepted' %}</span></a></li>
+	  <li><a href="#"><span>{% trans 'Resolved' %}</span></a></li>
+	  <li><a href="#"><span>{% trans 'Canceled' %}</span></a></li>
+          <li><a href="{% url 'userena_umessages_list' %}"><span>{% trans 'Messages' %}</span></a></li>
+          <li><a href="{% url 'userena_signout' %}"><span>{% trans 'Signout' %}</span></a></li>
+          {% else %}
+          {% endif %}
+        </ul>
+        {% endblock %}
+
+      </div><!-- /header-->
+      {% block content_title %}{% endblock %}
+      <div id="content-container">
+        {% block content %}{% endblock %}
+      </div><!-- /content-container-->
+      <div id="footer"><p>{% trans 'Made by' %} <a href="http://www.netciti.co.id">PT. Netciti Persada</a></p></div>
+    </div><!-- /container-->
+   </body>
+ </html>
